@@ -88,6 +88,12 @@ export async function pkgManagerArgs(npmClient: NpmClient, options: PkgManagerOp
         installerArgs.push('global');
       }
       break;
+    case 'yarnberry':
+      vocab = { run: 'run', install: 'add', bareInstall: 'install', uninstall: 'remove', dedupe: '', rebuild: 'install', global: '', save: '', saveDev: '--dev', saveExact: '--exact', nonInteractive: '', lockFileOnly: '' };
+      if (options.global) { // yarn installs packages globally under the 'global' prefix, instead of having a flag
+        installerArgs.push('global');
+      }
+    break;
     case 'pnpm':
       vocab = { run: 'run', install: 'add', bareInstall: 'install', uninstall: 'remove', dedupe: '', rebuild: 'rebuild', global: '--global', save: '', saveDev: '--save-dev', saveExact: '--save-exact', nonInteractive: '', lockFileOnly: '--lockfile-only' };
       break;
